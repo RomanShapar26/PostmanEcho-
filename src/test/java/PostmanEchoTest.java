@@ -12,18 +12,19 @@ public class PostmanEchoTest {
 // Предусловия
         given()
                 .baseUri("https://postman-echo.com")
-                .body("some data") // отправляемые данные (заголовки и query можно выставлять аналогично)
+                .body("Test") // отправляемые данные (заголовки и query можно выставлять аналогично)
 // Выполняемые действия
                 .when()
                 .post("/post")
 // Проверки
                 .then()
                 .statusCode(200)
-                .body("data", equalTo("some data"))
-                .body("headers.content-length", equalTo("9"))
+                .contentType(ContentType.JSON)
+                .body("data", equalTo("Test"))
+                .body("headers.content-length", equalTo("4"))
                 .body("headers.accept-encoding", equalTo("gzip,deflate"))
                 .body("headers.content-type", equalTo("text/plain; charset=ISO-8859-1"))
-                .body("headers.user-agent", equalTo("Apache-HttpClient/4.5.3 (Java/11.0.13)"))
+                .body("headers.user-agent", equalTo("Apache-HttpClient/4.5.3 (Java/11)"))
         ;
     }
 }
